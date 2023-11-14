@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import './style.css'
 
 function FormComponent() {
-  const [valueDollar, setValueDollar] = useState('')
+  const [valueDollar, setValueDollar] = useState(0)
   const [valueTobeConverted, setValueTobeConverted] = useState(0)
   const [valueConverted, setValueConverted] = useState(0)
 
@@ -17,27 +17,36 @@ function FormComponent() {
   }, [])
 
   function handleClick() {
-    setValueConverted(valueTobeConverted / valueDollar)
+    if (valueTobeConverted > 0) {
+      let newValue = (valueTobeConverted / valueDollar).toFixed(2)
+      localStorage.setItem('@value-converted', newValue.toString())
+      setValueConverted(localStorage.getItem('@value-converted'))
+    } else {
+      alert('Valor não pode ser zero ou menor que zero!')
+    }
+  }
+  function handleChange(e) {
+    e.preventDefault()
+    setValueTobeConverted(e.target.value)
   }
   return (
     <div>
       <form className='form'   >
-        <span htmlFor="valorEmReal">Valor em real</span>
+        <h2 htmlFor="valorCotacao">Valor atual do dólar é R$ {valueDollar}</h2>
+        <span htmlFor="valorEmReal">Por favor digite o valor em reais a ser convertido</span>
         <input
           type='number'
-          onChange={(e) => {
-            setValueTobeConverted(e.target.value)
-          }}
+          onChange={e => handleChange(e)}
           value={valueTobeConverted}
-          name='valorEmReal' placeholder='Valor a ser convertido'
+          name='valorEmReal'
+          placeholder='Valor a ser convertido'
         />
-        <span htmlFor="valorCotacao">Valor atual do dólar</span>
-        <input name="valorCotacao" type='text' value={valueDollar} disabled />
         <input type="submit" onClick={handleClick} value="Converter" />
       </form>
-      O valor convertido aparecerá aqui
       <div>
-        {valueConverted}
+        {`
+        Valor em dólares ${localStorage.getItem('@value-converted')} .
+        `}
       </div>
     </div>
   )

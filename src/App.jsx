@@ -1,12 +1,8 @@
-import Form  from './components/Form'
-import './App.css'
-
+import RoutesApp from './routes'
 function App() {
-  
   return (
     <>
-      <h1>Conversor de Moedas</h1>
-      <Form />
+      <RoutesApp />
     </>
   )
 }

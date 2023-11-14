@@ -1,0 +1,12 @@
+header {
+  background-color: rgb(54, 46, 24);
+  max-width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5px;
+}
+header a{
+  color: #fff;
+  text-decoration: none;
+  padding: 1rem;
+}

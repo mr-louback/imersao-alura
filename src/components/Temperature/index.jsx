@@ -2,7 +2,7 @@ import api from '../../services/api'
 import { useEffect, useState } from 'react'
 import './style.css'
 
-function FormComponent() {
+function Temperature({title}) {
   const [valueDollar, setValueDollar] = useState(0)
   const [valueTobeConverted, setValueTobeConverted] = useState(0)
   const [valueConverted, setValueConverted] = useState(0)
@@ -33,10 +33,10 @@ function FormComponent() {
     setValueTobeConverted(e.target.value)
   }
   return (
-    <div>
-      <form className='form'   >
-        <h2 htmlFor="valorCotacao">Valor atual do dólar é R$ {valueDollar}</h2>
-        <span htmlFor="valorEmReal">Por favor digite o valor em reais a ser convertido</span>
+    <div style={{ backgroundColor: 'green', margin: '0 15px', borderRadius: '10px', padding: '10px'}}>
+      <form className='form'>
+        <h2>{title}</h2>
+        <span htmlFor="valorEmReal">Por favor digite a temperatura</span>
         <input
           type='number'
           onChange={e => handleChange(e)}
@@ -55,4 +55,4 @@ function FormComponent() {
   )
 }
 
-export default FormComponent 
+export default Temperature 

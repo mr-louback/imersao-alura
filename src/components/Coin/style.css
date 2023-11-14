@@ -1,6 +1,27 @@
-.form {
+.form-coin {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+
+.inputCheckBoxContainer {
+  display: flex;
+}
+
+.inputCheckBoxContainer label {
+  display: flex;
+  padding: 1rem;
   gap: 5px;
+}
+
+.result-convertion {
+  font-size: large;
+  padding: 30px;
+  margin: 30px;
+
+}
+
+.form-coin .form .inputCheckBoxContainer input {
+  margin: 5px;
 }

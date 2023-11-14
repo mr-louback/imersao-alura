@@ -48,7 +48,7 @@ function FormComponent() {
       </form>
       <div>
         {`
-        R$ ${localStorage.getItem('@value-converted-to-be')} em reais é $${localStorage.getItem('@value-converted')} dólares.
+        R$ ${localStorage.getItem('@value-converted-to-be') == null ? 0 : localStorage.getItem('@value-converted-to-be')} em reais é $${localStorage.getItem('@value-converted') == null ? 0 : localStorage.getItem('@value-converted')} dólares.
         `}
       </div>
     </div>

@@ -86,7 +86,9 @@ function Coin() {
           name='valorEmReal'
           placeholder='Valor a ser convertido'
         />
-        <input type="submit" onClick={handleClick} value="Converter" />
+        <input type="submit" onClick={handleClick} 
+        value="Converter" />
+        
 
       </form>
       <div className='result-convertion'>

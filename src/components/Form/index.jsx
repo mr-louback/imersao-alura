@@ -19,6 +19,9 @@ function FormComponent() {
   function handleClick() {
     if (valueTobeConverted > 0) {
       let newValue = (valueTobeConverted / valueDollar).toFixed(2)
+      localStorage.setItem('@value-converted-to-be', valueTobeConverted.toString())
+      setValueTobeConverted(localStorage.getItem('@value-converted-to-be'))
+
       localStorage.setItem('@value-converted', newValue.toString())
       setValueConverted(localStorage.getItem('@value-converted'))
     } else {
@@ -45,7 +48,7 @@ function FormComponent() {
       </form>
       <div>
         {`
-        Valor em dólares ${localStorage.getItem('@value-converted')} .
+        R$ ${localStorage.getItem('@value-converted-to-be')} em reais é $${localStorage.getItem('@value-converted')} dólares.
         `}
       </div>
     </div>

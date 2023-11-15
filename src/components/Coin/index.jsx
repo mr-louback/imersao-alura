@@ -8,7 +8,7 @@ function Coin() {
   const [valueBitcoin, setValueBitcoin] = useState()
   const [valueTobeConverted, setValueTobeConverted] = useState()
   const [valueConverted, setValueConverted] = useState()
-  const [selectedCurrency, setSelectedCurrency] = useState()
+  const [selectedCurrency, setSelectedCurrency] = useState('dollar')
 
   useEffect(() => {
     async function loadDollar() {

@@ -1,58 +1,106 @@
-import api from '../../services/api'
 import { useEffect, useState } from 'react'
+import api from '../../services/api'
 import './style.css'
 
-function Temperature({ title }) {
-  const [valueDollar, setValueDollar] = useState(0)
-  const [valueTobeConverted, setValueTobeConverted] = useState(0)
-  const [valueConverted, setValueConverted] = useState(0)
+
+function Temperature() {
+  const [valueDollar, setValueDollar] = useState()
+  const [valueBitcoin, setValueBitcoin] = useState()
+  const [valueTobeConverted, setValueTobeConverted] = useState()
+  const [valueConverted, setValueConverted] = useState()
+  const [selectedCurrency, setSelectedCurrency] = useState('dollar')
 
   useEffect(() => {
     async function loadDollar() {
       const res = await api.get()
-      const data = Number(res.data.USDBRL.bid).toFixed(2)
-      setValueDollar(data)
+      const datadollar = Number(res.data.USDBRL.bid).toFixed(2)
+      const databitcoin = Number(res.data.BTCBRL.bid).toFixed(2)
+      setValueDollar(datadollar)
+      setValueBitcoin(databitcoin)
     }
     loadDollar()
   }, [])
-
-  function handleClick() {
-    if (valueTobeConverted > 0) {
-      let newValue = (valueTobeConverted / valueDollar).toFixed(2)
-      localStorage.setItem('@value-converted-to-be', valueTobeConverted.toString())
-      setValueTobeConverted(localStorage.getItem('@value-converted-to-be'))
-
-      localStorage.setItem('@value-converted', newValue.toString())
-      setValueConverted(localStorage.getItem('@value-converted'))
-    } else {
-      alert('Valor não pode ser zero ou menor que zero!')
-    }
+  const handleRadioCurrency = (e) => {
+    setSelectedCurrency(e.target.id)
   }
   function handleChange(e) {
-    e.preventDefault()
-    setValueTobeConverted(e.target.value)
+    const valueSanitized = e.target.value.replace(/[^0-9.]/g, '')
+    const valueFormatted = valueSanitized.includes('.', ',') ? parseFloat(valueSanitized).toFixed(2) : valueSanitized
+    setValueTobeConverted(valueFormatted)
+  }
+  function handleClick() {
+    switch (selectedCurrency) {
+      case 'bitcoin':
+        const convertedBit = valueTobeConverted / valueBitcoin
+        localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
+        localStorage.setItem('@current-name', selectedCurrency)
+        localStorage.setItem('@converted', convertedBit.toFixed(8).toString())
+        break;
+      case 'dollar':
+        const convertedDollar = valueTobeConverted / valueDollar
+        localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
+        localStorage.setItem('@current-name', selectedCurrency)
+        localStorage.setItem('@converted', convertedDollar.toFixed(2).toString())
+        break;
+      default:
+        alert('Você precisa selecionar uma moeda!')
+        break;
+    }
+    setValueConverted(localStorage.getItem('@converted'))
+
   }
   return (
-    <div className='content-temperature'>
+    <div className='content-coin'>
       <div className='container'>
-        <h2>{title} OBS: ainda nao estou pronto</h2>
-        <span htmlFor="valorEmReal">Por favor digite a temperatura</span>
-        <input
-          type='number'
-          onChange={e => handleChange(e)}
-          value={valueTobeConverted}
-          name='valorEmReal'
-          placeholder='Valor a ser convertido'
-        />
-        <input type="submit" onClick={handleClick} value="Converter" />
+        <h2>Valor atual do {selectedCurrency} hoje é de $ {(selectedCurrency === 'dollar') ? valueDollar : valueBitcoin}</h2>
         <div>
-          {`
-        R$ ${localStorage.getItem('@value-converted-to-be') == null ? 0 : localStorage.getItem('@value-converted-to-be')} em reais é $${localStorage.getItem('@value-converted') == null ? 0 : localStorage.getItem('@value-converted')} dólares.
-        `}
+          <span>Escolha a moeda para qual moeda voce deseja converter</span>
+        </div>
+        <div className='input-container'>
+          <label htmlFor="bitcoin">
+            Real para Bitcoin
+            <input
+              type="radio"
+              name="bitcoin"
+              id="bitcoin"
+              checked={selectedCurrency === 'bitcoin'}
+              onChange={handleRadioCurrency}
+              defaultChecked
+            />
+          </label>
+          <label htmlFor="dollar">
+            <input
+              type="radio"
+              name="dollar"
+              id="dollar"
+              checked={selectedCurrency === 'dollar'}
+              onChange={handleRadioCurrency}
+            />
+            Real para Dollar
+          </label>
+          <div>
+            <span>Por favor digite o valor em reais a ser convertido</span>
+          </div>
+          <input
+            type='number'
+            onChange={handleChange}
+            name='valueInReal'
+            placeholder='Valor a ser convertido'
+          />
+          <button
+            onClick={handleClick}
+          >Converter"
+          </button>
+        </div>
+
+        <div className='result-convertion'>
+          {
+            `R$ ${Number(localStorage.getItem('@to-be-converted')).toFixed(2) ?? '0,00'} em ${selectedCurrency ?? 'moeda'} é $${valueConverted ?? '0,00'}`
+          }
         </div>
       </div>
     </div>
   )
 }
 
-export default Temperature 
+export default Temperature

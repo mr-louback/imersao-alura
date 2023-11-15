@@ -8,32 +8,40 @@ function Distance() {
 
   function handleChange(e) {
     e.preventDefault()
-    const time = Number(e.target.value)
-    const distance = time * 299792458
+    const time = e.target.value
+    const timeInSeconds = Number(e.target.value) * 60 * 60 * 24 * 365
+    const speedOfLight = 299792458
+    const distance = timeInSeconds * speedOfLight
     setunidadeTime(localStorage.setItem('time', time.toString()))
     setunidadeDistance(localStorage.setItem('distance', distance.toString()))
   }
   function handleClick() {
-    setunidadeDistance(localStorage.getItem('distance'))
+    setunidadeDistance(parseFloat(localStorage.getItem('distance')).toLocaleString().toString())
     setunidadeTime(localStorage.getItem('time'))
   }
   return (
     <>
       <div className='content-distance'>
         <div className="container">
-          <h1>Conversor de distância</h1>
-          <div>Por um determinado tempo à velocidade da luz</div>
-          <div>você terá percorrido que distância?</div>
+          <h1>À 299.792.458 M/s (velocidade da luz) </h1>
+          <div>Que distância você percorre, por um(1) ano ou mais?</div>
+          <div>Vamos descobrir.</div>
+          <div>Cada unidade representa um(1) ano.</div>
           <div className="input-container">
-            <input type="number" onChange={handleChange} name="time" id="time" placeholder='Tempo em minutos' />
+            <input type="number" onChange={handleChange} name="time" id="time" placeholder="anos/luz" />
             <button onClick={handleClick} >Calcular</button>
           </div>
           <div id='res'>
-            <h2>
-              Na velocidade da luz, você irá percorrer...
-            </h2>
+            <p>(Obs) Sem contar a força G</p>
             <p>
-              {` Km ${unidadeDistance ?? 0} em ${unidadeTime ?? 0} minutos.`}
+
+              {
+                (unidadeTime == undefined) ? '' : (unidadeTime <= 0) ? 'O número precisar ser maior que zero!' :
+                  (unidadeTime == 1) ?
+                  (`Você percorre em ${unidadeTime} ano o total de ${unidadeDistance} metros.`)
+                  :
+                  (`Você percorre em ${unidadeTime} anos o total de ${unidadeDistance} metros.`)
+              }
             </p>
           </div>
         </div>

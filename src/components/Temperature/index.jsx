@@ -2,7 +2,7 @@ import api from '../../services/api'
 import { useEffect, useState } from 'react'
 import './style.css'
 
-function Temperature({title}) {
+function Temperature({ title }) {
   const [valueDollar, setValueDollar] = useState(0)
   const [valueTobeConverted, setValueTobeConverted] = useState(0)
   const [valueConverted, setValueConverted] = useState(0)
@@ -33,9 +33,9 @@ function Temperature({title}) {
     setValueTobeConverted(e.target.value)
   }
   return (
-    <div style={{ backgroundColor: 'green', margin: '0 15px', borderRadius: '10px', padding: '10px'}}>
-      <form className='form'>
-        <h2>{title}</h2>
+    <div className='content-temperature'>
+      <div className='container'>
+        <h2>{title} OBS: ainda nao estou pronto</h2>
         <span htmlFor="valorEmReal">Por favor digite a temperatura</span>
         <input
           type='number'
@@ -45,11 +45,11 @@ function Temperature({title}) {
           placeholder='Valor a ser convertido'
         />
         <input type="submit" onClick={handleClick} value="Converter" />
-      </form>
-      <div>
-        {`
+        <div>
+          {`
         R$ ${localStorage.getItem('@value-converted-to-be') == null ? 0 : localStorage.getItem('@value-converted-to-be')} em reais é $${localStorage.getItem('@value-converted') == null ? 0 : localStorage.getItem('@value-converted')} dólares.
         `}
+        </div>
       </div>
     </div>
   )

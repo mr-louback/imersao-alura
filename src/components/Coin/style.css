@@ -1,27 +1,29 @@
-.form-coin {
+.content-coin {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-
-.inputCheckBoxContainer {
-  display: flex;
-}
-
-.inputCheckBoxContainer label {
-  display: flex;
-  padding: 1rem;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../assets/img/real.jpg');
+  background-size: cover;
   gap: 5px;
 }
 
-.result-convertion {
-  font-size: large;
-  padding: 30px;
-  margin: 30px;
-
+.content-coin .container {
+  background-color: rgba(0, 0, 0, 0.849);
+  padding: 2rem;
+  margin: 2rem;
 }
 
-.form-coin .form .inputCheckBoxContainer input {
-  margin: 5px;
+.content-coin .container div {
+  font-size: larger;
+}
+
+.content-coin .container .input-container input,
+button {
+  padding: .5rem;
+  margin: 1rem .5rem;
+  margin-left: 0;
+  flex-direction: row-reverse;
 }

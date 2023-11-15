@@ -19,7 +19,7 @@ function Distance() {
   }
   return (
     <>
-      <div className='content'>
+      <div className='content-distance'>
         <div className="container">
           <h1>Conversor de distância</h1>
           <div>Por um determinado tempo à velocidade da luz</div>

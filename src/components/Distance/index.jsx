@@ -1,19 +1,44 @@
+import { useState } from 'react'
 import './style.css'
 
 function Distance() {
 
+  const [unidadeTime, setunidadeTime] = useState()
+  const [unidadeDistance, setunidadeDistance] = useState()
+
+  function handleChange(e) {
+    e.preventDefault()
+    const time = Number(e.target.value)
+    const distance = time * 299792458
+    setunidadeTime(localStorage.setItem('time', time.toString()))
+    setunidadeDistance(localStorage.setItem('distance', distance.toString()))
+  }
+  function handleClick() {
+    setunidadeDistance(localStorage.getItem('distance'))
+    setunidadeTime(localStorage.getItem('time'))
+  }
   return (
     <>
-      <form className='form'>
-        <h1>Conversor de distância</h1>
-        <div>Por determinado tempo à velocidade da lúz</div>
-        <div>você terá percorrido que distância?</div>
-        <input type="number" name="time" id="time" placeholder='Tempo em minutos' />
-        <input type="submit" value="Calcular" />
-        <div id='res'>
-          Resultado
+      <div className='content'>
+        <div className="container">
+          <h1>Conversor de distância</h1>
+          <div>Por um determinado tempo à velocidade da luz</div>
+          <div>você terá percorrido que distância?</div>
+          <div className="input-container">
+            <input type="number" onChange={handleChange} name="time" id="time" placeholder='Tempo em minutos' />
+            <button onClick={handleClick} >Calcular</button>
+          </div>
+          <div id='res'>
+            <h2>
+              Na velocidade da luz, você irá percorrer...
+            </h2>
+            <p>
+              {` Km ${unidadeDistance ?? 0} em ${unidadeTime ?? 0} minutos.`}
+            </p>
+          </div>
         </div>
-      </form>
+      </div>
+
     </>
   )
 }

@@ -30,3 +30,8 @@ font-size: x-large;
 .content-temperature .container .input-container input{
 padding: .5rem;
 }
+.container .value input{
+  display: flex;
+  margin:  25px 0 ;
+  align-items: center;
+}

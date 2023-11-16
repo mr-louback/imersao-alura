@@ -1,0 +1,27 @@
+.content-coin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../assets/img/real.jpg');
+  background-size: cover;
+  gap: 5px;
+}
+
+.content-coin .container {
+  background-color: rgba(0, 0, 0, 0.849);
+  padding: 2rem;
+  margin: 2rem;
+}
+
+.content-coin .container div {
+  font-size: larger;
+}
+
+.content-coin .container .input-container input,
+button {
+  padding: .5rem;
+  margin: 1rem .5rem;
+  margin-left: 0;
+}

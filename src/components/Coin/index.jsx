@@ -6,7 +6,7 @@ import './style.css'
 function Coin() {
   const [valueDollar, setValueDollar] = useState()
   const [valueBitcoin, setValueBitcoin] = useState()
-  const [valueTobeConverted, setValueTobeConverted] = useState()
+  const [valueTobeConverted, setValueTobeConverted] = useState('')
   const [valueConverted, setValueConverted] = useState()
   const [selectedCurrency, setSelectedCurrency] = useState('dollar')
 
@@ -22,33 +22,38 @@ function Coin() {
   }, [])
   const handleRadioCurrency = (e) => {
     setSelectedCurrency(e.target.id)
+    setValueConverted()
   }
+
   function handleChange(e) {
-    const valueSanitized = e.target.value.replace(/[^0-9.]/g, '')
+    const valueSanitized = e.target.value
     const valueFormatted = valueSanitized.includes('.', ',') ? parseFloat(valueSanitized).toFixed(2) : valueSanitized
     setValueTobeConverted(valueFormatted)
+    setValueConverted()
   }
+
   function handleClick() {
     switch (selectedCurrency) {
       case 'bitcoin':
         const convertedBit = valueTobeConverted / valueBitcoin
         localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
         localStorage.setItem('@current-name', selectedCurrency)
-        localStorage.setItem('@converted', convertedBit.toFixed(8).toString())
+        localStorage.setItem('@coin', convertedBit.toFixed(8).toString())
         break;
       case 'dollar':
         const convertedDollar = valueTobeConverted / valueDollar
         localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
         localStorage.setItem('@current-name', selectedCurrency)
-        localStorage.setItem('@converted', convertedDollar.toFixed(2).toString())
+        localStorage.setItem('@coin', convertedDollar.toFixed(2).toString())
         break;
       default:
         alert('Você precisa selecionar uma moeda!')
         break;
     }
-    setValueConverted(localStorage.getItem('@converted'))
-
+    setValueConverted(localStorage.getItem('@coin'))
+    setValueTobeConverted(localStorage.getItem('@to-be-converted'))
   }
+
   return (
     <div className='content-coin'>
       <div className='container'>
@@ -79,7 +84,7 @@ function Coin() {
             Real para Dollar
           </label>
           <div>
-            <span>Por favor digite o valor em reais a ser convertido</span>
+            <span>Por favor digite o valor em reais </span>
           </div>
           <input
             type='number'
@@ -89,14 +94,21 @@ function Coin() {
           />
           <button
             onClick={handleClick}
-          >Converter"
+          >Converter
           </button>
         </div>
-
         <div className='result-convertion'>
-          {
-            `R$ ${Number(localStorage.getItem('@to-be-converted')).toFixed(2) ?? '0,00'} em ${selectedCurrency ?? 'moeda'} é $${valueConverted ?? '0,00'}`
-          }
+          <p>
+            {
+              (valueConverted <= 0) ?
+                'O número precisa ser maior que zero!' :
+                (valueConverted == undefined) ? '' :
+                  (valueTobeConverted == 1) ?
+                    (`${valueTobeConverted} Real(R$) é ($) ${valueConverted} em ${selectedCurrency}.`)
+                    :
+                    (`${valueTobeConverted} Reais(R$) sao ($) ${valueConverted} em ${selectedCurrency}.`)
+            }
+          </p>
         </div>
       </div>
     </div>

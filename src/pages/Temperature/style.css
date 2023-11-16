@@ -11,27 +11,28 @@
 
 }
 
-.content-temperature .container {
+.container {
   background-color: rgba(0, 0, 0, 0.849);
   padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-font-size: x-large;
-  width: 600px;
-  height: 400px;
+  font-size: x-large;
+  
   margin: 2rem;
 }
 
-.content-temperature .container .input-container label>input {
+.input-container label>input {
   padding: 2rem;
   margin: 5px;
 }
-.content-temperature .container .input-container input{
-padding: .5rem;
+
+.input-container input {
+  padding: .5rem;
 }
-.container .value input{
+
+.value input {
   display: flex;
-  margin:  25px 0 ;
+  margin: 25px 0;
   align-items: center;
 }

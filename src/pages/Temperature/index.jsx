@@ -45,7 +45,7 @@ function Temperature() {
   return (
     <div className='content-temperature'>
       <div className='container'>
-        <h2>Termometro - {selectedCurrency}</h2>
+        <h2>Termômetro - {selectedCurrency}</h2>
         <div className='input-container'>
           <label htmlFor="fahrenheit">
             Fahrenheit para Celsius

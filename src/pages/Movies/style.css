@@ -1,0 +1,54 @@
+.listFilms {
+  
+  margin: 14px auto;
+  max-width: fit-content;
+}
+
+.listFilms article {
+  width: 100%;
+  background-color: #424040;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.listFilms span {
+  font-size: 22px;
+  margin-bottom: 15px;
+  display: block;
+  text-align: center;
+}
+
+.listFilms img {
+  width: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.listFilms a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 10px 0;
+  font-size: 24px;
+  text-decoration: none;
+  background-color: #116feb;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  transition: all .5s;
+}
+
+.listFilms a:hover {
+  background-color: #0d5cb6;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100vw;
+}

@@ -59,7 +59,7 @@ function Coin() {
       <div className='container'>
         <h2>Valor atual do {selectedCurrency} hoje é de $ {(selectedCurrency === 'dollar') ? valueDollar : valueBitcoin}</h2>
         <div>
-          <span>Escolha a moeda para qual moeda voce deseja converter</span>
+          <span>Você escolheu {selectedCurrency}</span>
         </div>
         <div className='input-container'>
           <label htmlFor="bitcoin">

@@ -4,82 +4,73 @@ import './style.css'
 
 
 function Temperature() {
-  const [valueDollar, setValueDollar] = useState()
-  const [valueBitcoin, setValueBitcoin] = useState()
+  const [value, setValue] = useState()
   const [valueTobeConverted, setValueTobeConverted] = useState()
-  const [valueConverted, setValueConverted] = useState()
-  const [selectedCurrency, setSelectedCurrency] = useState('dollar')
+  const [selectedCurrency, setSelectedCurrency] = useState('celsius')
 
-  useEffect(() => {
-    async function loadDollar() {
-      const res = await api.get()
-      const datadollar = Number(res.data.USDBRL.bid).toFixed(2)
-      const databitcoin = Number(res.data.BTCBRL.bid).toFixed(2)
-      setValueDollar(datadollar)
-      setValueBitcoin(databitcoin)
-    }
-    loadDollar()
-  }, [])
+
   const handleRadioCurrency = (e) => {
     setSelectedCurrency(e.target.id)
+    setValueTobeConverted()
   }
   function handleChange(e) {
     const valueSanitized = e.target.value.replace(/[^0-9.]/g, '')
-    const valueFormatted = valueSanitized.includes('.', ',') ? parseFloat(valueSanitized).toFixed(2) : valueSanitized
+    const valueFormatted = valueSanitized.includes('.', ',') ? parseFloat(valueSanitized).toFixed(1) : valueSanitized
     setValueTobeConverted(valueFormatted)
+    setValue()
+
   }
   function handleClick() {
     switch (selectedCurrency) {
-      case 'bitcoin':
-        const convertedBit = valueTobeConverted / valueBitcoin
+      case 'farenhait':
+        const farenhait = (5 / 9) * (valueTobeConverted - 32)
+        setValue(farenhait)
         localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
         localStorage.setItem('@current-name', selectedCurrency)
-        localStorage.setItem('@converted', convertedBit.toFixed(8).toString())
+        localStorage.setItem('@content', farenhait.toString())
         break;
-      case 'dollar':
-        const convertedDollar = valueTobeConverted / valueDollar
+      case 'celsius':
+        const celsius = (9 / 5) * (valueTobeConverted + 32)
+        setValue(celsius)
         localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
         localStorage.setItem('@current-name', selectedCurrency)
-        localStorage.setItem('@converted', convertedDollar.toFixed(2).toString())
+        localStorage.setItem('@content', celsius.toString())
         break;
       default:
         alert('Você precisa selecionar uma moeda!')
         break;
     }
-    setValueConverted(localStorage.getItem('@converted'))
-
+    setValue(Number(localStorage.getItem('@content')).toFixed(1).toString())
+    setValueTobeConverted(localStorage.getItem('@to-be-converted'))
   }
   return (
-    <div className='content-coin'>
+    <div className='content-temperature'>
       <div className='container'>
-        <h2>Valor atual do {selectedCurrency} hoje é de $ {(selectedCurrency === 'dollar') ? valueDollar : valueBitcoin}</h2>
-        <div>
-          <span>Escolha a moeda para qual moeda voce deseja converter</span>
-        </div>
+        <h2>Termometro - {selectedCurrency}</h2>
         <div className='input-container'>
-          <label htmlFor="bitcoin">
-            Real para Bitcoin
+          <label htmlFor="farenhait">
+            Farenhait para Celsius
             <input
               type="radio"
-              name="bitcoin"
-              id="bitcoin"
-              checked={selectedCurrency === 'bitcoin'}
+              name="farenhait"
+              id="farenhait"
+              checked={selectedCurrency === 'farenhait'}
               onChange={handleRadioCurrency}
               defaultChecked
             />
           </label>
-          <label htmlFor="dollar">
+          <label htmlFor="celsius">
             <input
               type="radio"
-              name="dollar"
-              id="dollar"
-              checked={selectedCurrency === 'dollar'}
+              name="celsius"
+              id="celsius"
+              checked={selectedCurrency === 'celsius'}
               onChange={handleRadioCurrency}
             />
-            Real para Dollar
+            Celsius para Farenhait
           </label>
           <div>
-            <span>Por favor digite o valor em reais a ser convertido</span>
+            <span>Por favor digite o valor em {selectedCurrency}.</span>
           </div>
           <input
             type='number'
@@ -89,14 +80,22 @@ function Temperature() {
           />
           <button
             onClick={handleClick}
-          >Converter"
+          >Converter
           </button>
         </div>
-
-        <div className='result-convertion'>
-          {
-            `R$ ${Number(localStorage.getItem('@to-be-converted')).toFixed(2) ?? '0,00'} em ${selectedCurrency ?? 'moeda'} é $${valueConverted ?? '0,00'}`
-          }
+        <div className='result-temperature'>
+          <p>
+            {
+              (value == undefined || valueTobeConverted == undefined) ?
+                '' :
+                (valueTobeConverted <= 0) ?
+                  'O número precisar ser maior que zero!' :
+                  (selectedCurrency == 'celsius') ?
+                    (`${valueTobeConverted}º ${selectedCurrency} é o mesmo que ${value}º farenhait.`) :
+                    (selectedCurrency == 'farenhait') &&
+                    (`${valueTobeConverted}º ${selectedCurrency} é o mesmo que ${value}º celsius.`)
+            }
+          </p>
         </div>
       </div>
     </div>

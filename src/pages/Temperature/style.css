@@ -27,11 +27,11 @@
   margin: 5px;
 }
 
-.input-temperature input {
+.input-temperature input, button {
   padding: .5rem;
 }
 
-.res-temperature input {
+.res-temperature {
   display: flex;
   margin: 25px 0;
   align-items: center;

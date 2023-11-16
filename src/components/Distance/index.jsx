@@ -3,7 +3,7 @@ import './style.css'
 
 function Distance() {
 
-  const [unidadeTime, setunidadeTime] = useState()
+  const [unidadeTime, setunidadeTime] = useState('')
   const [unidadeDistance, setunidadeDistance] = useState()
 
   function handleChange(e) {
@@ -34,13 +34,12 @@ function Distance() {
           <div id='res'>
             <p>(Obs) Sem contar a força G</p>
             <p>
-
               {
-                (unidadeTime == undefined) ? '' : (unidadeTime <= 0) ? 'O número precisar ser maior que zero!' :
+                (unidadeTime <= 0) ? 'O número precisar ser maior que zero!' :
                   (unidadeTime == 1) ?
-                  (`Você percorre em ${unidadeTime} ano o total de ${unidadeDistance} metros.`)
-                  :
-                  (`Você percorre em ${unidadeTime} anos o total de ${unidadeDistance} metros.`)
+                    (`Você percorre em ${unidadeTime} ano o total de ${unidadeDistance} metros.`)
+                    :
+                    (`Você percorre em ${unidadeTime} anos o total de ${unidadeDistance} metros.`)
               }
             </p>
           </div>

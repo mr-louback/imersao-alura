@@ -37,9 +37,9 @@ function Distance() {
               {
                 (unidadeTime == undefined) ? '' : (unidadeTime <= 0) ? 'O número precisar ser maior que zero!' :
                   (unidadeTime == 1) ?
-                  (`Você percorre em ${unidadeTime} ano o total de ${unidadeDistance} metros.`)
+                  (`Em ${unidadeTime} ano a distância total será de ${unidadeDistance} metros.`)
                   :
-                  (`Você percorre em ${unidadeTime} anos o total de ${unidadeDistance} metros.`)
+                  (`Em ${unidadeTime} anos a distância total será de ${unidadeDistance} metros.`)
               }
             </p>
           </div>

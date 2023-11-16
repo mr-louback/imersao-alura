@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home/index'
-import PageDistance from './pages/PageDistance/index'
-import PageTemperature from './pages/PageTemperature/index'
-import Navbar from './components/Navbar/index'
+import Home from './pages/Home'
+import PageDistance from './pages/PageDistance'
+import PageTemperature from './pages/PageTemperature'
+import Navbar from './components/Navbar'
+import PageMovies from './pages/PageMovies'
 import Erro from './pages/Error'
 function RoutesApp() {
   return (
@@ -13,6 +14,7 @@ function RoutesApp() {
           <Route path='/' element={<Home />} />
           <Route path='/distance' element={<PageDistance />} />
           <Route path='/temperature' element={<PageTemperature />} />
+          <Route path='/movies' element={<PageMovies />} />
           <Route path='*' element={<Erro />} />
         </Routes>
       </BrowserRouter>

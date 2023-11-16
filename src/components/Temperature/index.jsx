@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import api from '../../services/api'
+import { useState } from 'react'
 import './style.css'
 
 
@@ -22,12 +21,12 @@ function Temperature() {
   }
   function handleClick() {
     switch (selectedCurrency) {
-      case 'farenhait':
-        const farenhait = (valueTobeConverted * 9 / 5) + 32
-        setValue(farenhait)
+      case 'fahrenheit':
+        const fahrenheit = (valueTobeConverted * 9 / 5) + 32
+        setValue(fahrenheit)
         localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
         localStorage.setItem('@current-name', selectedCurrency)
-        localStorage.setItem('@content', farenhait.toString())
+        localStorage.setItem('@content', fahrenheit.toString())
         break;
       case 'celsius':
         const celsius = (valueTobeConverted - 32) * 5 / 9
@@ -48,13 +47,13 @@ function Temperature() {
       <div className='container'>
         <h2>Termometro - {selectedCurrency}</h2>
         <div className='input-container'>
-          <label htmlFor="farenhait">
-            Farenhait para Celsius
+          <label htmlFor="fahrenheit">
+            Fahrenheit para Celsius
             <input
               type="radio"
-              name="farenhait"
-              id="farenhait"
-              checked={selectedCurrency === 'farenhait'}
+              name="fahrenheit"
+              id="fahrenheit"
+              checked={selectedCurrency === 'fahrenheit'}
               onChange={handleRadioCurrency}
               defaultChecked
             />
@@ -67,21 +66,23 @@ function Temperature() {
               checked={selectedCurrency === 'celsius'}
               onChange={handleRadioCurrency}
             />
-            Celsius para Farenhait
+            Celsius para Fahrenheit
           </label>
           <div>
             <span>Por favor digite o valor em {selectedCurrency}.</span>
           </div>
-          <input
-            type='number'
-            onChange={handleChange}
-            name='valueInReal'
-            placeholder='Valor a ser convertido'
-          />
-          <button
-            onClick={handleClick}
-          >Converter
-          </button>
+          <div className="value">
+            <input
+              type='number'
+              onChange={handleChange}
+              name='valueInReal'
+              placeholder='Valor a ser convertido'
+            />
+            <button
+              onClick={handleClick}
+            >Converter
+            </button>
+          </div>
         </div>
         <div className='result-temperature'>
           <p>
@@ -91,8 +92,8 @@ function Temperature() {
                 (valueTobeConverted <= 0) ?
                   'O número precisar ser maior que zero!' :
                   (selectedCurrency == 'celsius') ?
-                    (`${valueTobeConverted}º ${selectedCurrency} é o mesmo que ${value}º farenhait.`) :
-                    (selectedCurrency == 'farenhait') &&
+                    (`${valueTobeConverted}º ${selectedCurrency} é o mesmo que ${value}º fahrenheit.`) :
+                    (selectedCurrency == 'fahrenheit') &&
                     (`${valueTobeConverted}º ${selectedCurrency} é o mesmo que ${value}º celsius.`)
             }
           </p>

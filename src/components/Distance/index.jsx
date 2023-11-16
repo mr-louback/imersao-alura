@@ -9,7 +9,7 @@ function Distance() {
   function handleChange(e) {
     e.preventDefault()
     const time = e.target.value
-    const timeInSeconds = Number(e.target.value) * 60 * 60 * 24 * 365
+    const timeInSeconds = Number(time) * 60 * 60 * 24 * 365
     const speedOfLight = 299792458
     const distance = timeInSeconds * speedOfLight
     setunidadeTime(localStorage.setItem('time', time.toString()))

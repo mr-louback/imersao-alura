@@ -7,7 +7,7 @@ function Navbar() {
         <Link to="/">Conversor Moeda</Link>
         <Link to={`/distance`}>Conversor Distância</Link>
         <Link to="/temperature">Conversor Temperatura</Link>
-        <Link to="/movie">Filmes</Link>
+        <Link to="/movies">Filmes</Link>
       </header>
     </>
   )

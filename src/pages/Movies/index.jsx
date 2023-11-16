@@ -29,7 +29,7 @@ function PageMovies() {
                 {movie.title}
               </span>
                 <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.title} />
-              <Link to={`/movies/${movie.id}`}>Ver detalhes</Link>
+              <Link to={`/movie/${movie.id}`}>Ver detalhes</Link>
             </article>
           )
         })

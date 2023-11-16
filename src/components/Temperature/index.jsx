@@ -23,14 +23,14 @@ function Temperature() {
   function handleClick() {
     switch (selectedCurrency) {
       case 'farenhait':
-        const farenhait = (5 / 9) * (valueTobeConverted - 32)
+        const farenhait = (valueTobeConverted * 9 / 5) + 32
         setValue(farenhait)
         localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
         localStorage.setItem('@current-name', selectedCurrency)
         localStorage.setItem('@content', farenhait.toString())
         break;
       case 'celsius':
-        const celsius = (9 / 5) * (valueTobeConverted + 32)
+        const celsius = (valueTobeConverted - 32) * 5 / 9
         setValue(celsius)
         localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
         localStorage.setItem('@current-name', selectedCurrency)

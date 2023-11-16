@@ -35,7 +35,7 @@ function Distance() {
             <p>(Obs) Sem contar a força G</p>
             <p>
               {
-                (unidadeTime == undefined) ? unidadeTime : (unidadeTime <= 0) ? 'O número precisar ser maior que zero!' :
+                (unidadeTime == undefined) ? '' : (unidadeTime <= 0) ? 'O número precisar ser maior que zero!' :
                   (unidadeTime == 1) ?
                   (`Você percorre em ${unidadeTime} ano o total de ${unidadeDistance} metros.`)
                   :

@@ -11,7 +11,7 @@
 
 }
 
-.container {
+.container-temperature {
   background-color: rgba(0, 0, 0, 0.849);
   padding: 2rem;
   display: flex;
@@ -22,16 +22,16 @@
   margin: 2rem;
 }
 
-.input-container label>input {
+.input-temperature label>input {
   padding: 2rem;
   margin: 5px;
 }
 
-.input-container input {
+.input-temperature input {
   padding: .5rem;
 }
 
-.value input {
+.res-temperature input {
   display: flex;
   margin: 25px 0;
   align-items: center;

@@ -56,12 +56,12 @@ function Coin() {
 
   return (
     <div className='content-coin'>
-      <div className='container'>
+      <div className='container-coin'>
         <h2>Valor atual do {selectedCurrency} hoje é de $ {(selectedCurrency === 'dollar') ? valueDollar : valueBitcoin}</h2>
         <div>
           <span>Você escolheu {selectedCurrency}</span>
         </div>
-        <div className='input-container'>
+        <div className='input-coin'>
           <label htmlFor="bitcoin">
             Real para Bitcoin
             <input
@@ -97,7 +97,7 @@ function Coin() {
           >Converter
           </button>
         </div>
-        <div className='result-convertion'>
+        <div className='res-coin'>
           <p>
             {
               (valueConverted <= 0) ?

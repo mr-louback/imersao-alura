@@ -9,18 +9,17 @@
   gap: 5px;
 }
 
-.content-coin .container {
+.container-coin {
   background-color: rgba(0, 0, 0, 0.849);
   padding: 2rem;
   margin: 2rem;
 }
 
-.content-coin .container div {
+.container-coin div {
   font-size: larger;
 }
 
-.content-coin .container .input-container input,
-button {
+.input-coin {
   padding: .5rem;
   margin: 1rem .5rem;
   margin-left: 0;

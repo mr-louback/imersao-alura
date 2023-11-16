@@ -44,9 +44,9 @@ function Temperature() {
   }
   return (
     <div className='content-temperature'>
-      <div className='container'>
+      <div className='container-temperature'>
         <h2>Termômetro - {selectedCurrency}</h2>
-        <div className='input-container'>
+        <div className='input-temperature'>
           <label htmlFor="fahrenheit">
             Fahrenheit para Celsius
             <input
@@ -84,7 +84,7 @@ function Temperature() {
             </button>
           </div>
         </div>
-        <div className='result-temperature'>
+        <div className='res-temperature'>
           <p>
             {
               (value == undefined || valueTobeConverted == undefined) ?

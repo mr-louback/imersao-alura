@@ -22,16 +22,16 @@ function Distance() {
   return (
     <>
       <div className='content-distance'>
-        <div className="container">
+        <div className="container-distance">
           <h1>À 299.792.458 M/s (velocidade da luz) </h1>
           <div>Que distância você percorre, por um(1) ano ou mais?</div>
           <div>Vamos descobrir.</div>
           <div>Cada unidade representa um(1) ano.</div>
-          <div className="input-container">
+          <div className="input-distance">
             <input type="number" onChange={handleChange} name="time" id="time" placeholder="anos/luz" />
             <button onClick={handleClick} >Calcular</button>
           </div>
-          <div id='res'>
+          <div className='res-distance'>
             <p>(Obs) Sem contar a força G</p>
             <p>
               {

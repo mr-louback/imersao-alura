@@ -2,9 +2,8 @@ header {
   background-color: rgb(30, 24, 54);
   max-width: 100%;
   display: flex;
-  justify-content: space-around;
-  /* margin-bottom: 5px; */
-  /* padding: 2rem; */
+  justify-content: space-evenly;
+  padding: .1rem;
 }
 
 header a {

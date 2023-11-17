@@ -45,10 +45,10 @@ function Temperature() {
   return (
     <div className='content-temperature'>
       <div className='container-temperature'>
-        <h2>Termômetro - {selectedCurrency}</h2>
+        <h2>Conversor Temperatura</h2>
         <div className='input-temperature'>
           <label htmlFor="fahrenheit">
-            Fahrenheit para Celsius
+           
             <input
               type="radio"
               name="fahrenheit"
@@ -56,7 +56,7 @@ function Temperature() {
               checked={selectedCurrency === 'fahrenheit'}
               onChange={handleRadioCurrency}
               defaultChecked
-            />
+            /> Fahrenheit
           </label>
           <label htmlFor="celsius">
             <input
@@ -66,10 +66,10 @@ function Temperature() {
               checked={selectedCurrency === 'celsius'}
               onChange={handleRadioCurrency}
             />
-            Celsius para Fahrenheit
+            Celsius
           </label>
           <div>
-            <span>Por favor digite o valor em {selectedCurrency}.</span>
+            <span>Para {selectedCurrency}.</span>
           </div>
           <div className="value">
             <input

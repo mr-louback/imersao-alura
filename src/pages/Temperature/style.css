@@ -3,36 +3,88 @@
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: 89vh;
   background-image: url('../../assets/img/termometro.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
 }
 
 .container-temperature {
-  background-color: rgba(0, 0, 0, 0.849);
-  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.658);
+  border-radius: 10px;
+
   display: flex;
   flex-direction: column;
+  justify-content: start;
   align-items: center;
-  font-size: x-large;
+
+  width: 73vw;
+  height: 80vh;
+  margin-top: 1.5rem;
+  padding: 1rem;
+}
+
+.input-temperature {}
+
+.input-temperature label {
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  border-radius: 10px;
+  margin: auto 7px;
+  border: #fff solid 1px;
+  padding: .5rem;
+}
+.input-temperature label:hover {
+  background-color: rgba(243, 243, 243, 0.658);
+transition: all .7s;
+}
+.input-temperature input:nth-last-of-type('radio') {}
+
+.input-temperature div {
+  margin: 10px 0;
+}
+
+.input-temperature input  {
+  margin: 10px 0;
+  padding: 1rem;
+  border-radius: 10px;
+  border: none;
+  width: -moz-available;
+  width: 100%;
   
-  margin: 2rem;
+  display: inline-flex;
+  /* justify-content: center; */
+  flex-direction: row;
+  align-items: center;
+  margin: 4px auto;
+  background: #3d3c3c5b;
 }
 
-.input-temperature label>input {
-  padding: 2rem;
-  margin: 5px;
-}
 
-.input-temperature input, button {
+
+.input-temperature button {
+  border: none;
+  width: 100%;
+  border-radius: 10px;
   padding: .5rem;
 }
 
 .res-temperature {
   display: flex;
-  margin: 25px 0;
   align-items: center;
+}
+
+
+.res-temperature {
+  margin: 0 auto;
+  padding: 1rem;
+  font-size: 25px;
+  width: -moz-available;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

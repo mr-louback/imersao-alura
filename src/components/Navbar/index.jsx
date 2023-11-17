@@ -4,9 +4,9 @@ function Navbar() {
   return (
     <>
       <header className="header">
-        <Link to="/">Conversor Moeda</Link>
-        <Link to={`/distance`}>Conversor Distância</Link>
-        <Link to="/temperature">Conversor Temperatura</Link>
+        <Link to="/">Moeda</Link>
+        <Link to={`/distance`}>Distância</Link>
+        <Link to="/temperature">Temperatura</Link>
         <Link to="/movies">Filmes</Link>
       </header>
     </>

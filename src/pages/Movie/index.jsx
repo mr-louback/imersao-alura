@@ -35,7 +35,7 @@ function Movie() {
       console.log('desmontado');
     })
   }, [id, navigate])
-  
+  // Area de validações
   return (
     <div>
       <h1>{movies.title}</h1>

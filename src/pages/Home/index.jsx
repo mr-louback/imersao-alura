@@ -33,18 +33,19 @@ function Coin() {
   }
 
   function handleClick() {
+    let valueConverted = 0
     switch (selectedCurrency) {
       case 'bitcoin':
-        const convertedBit = valueTobeConverted / valueBitcoin
+        valueConverted = (valueTobeConverted / valueBitcoin);
         localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
         localStorage.setItem('@current-name', selectedCurrency)
-        localStorage.setItem('@coin', convertedBit.toFixed(8).toString())
+        localStorage.setItem('@coin', valueConverted.toFixed(8).toString())
         break;
       case 'dollar':
-        const convertedDollar = valueTobeConverted / valueDollar
+        valueConverted = valueTobeConverted / valueDollar
         localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
         localStorage.setItem('@current-name', selectedCurrency)
-        localStorage.setItem('@coin', convertedDollar.toFixed(2).toString())
+        localStorage.setItem('@coin', valueConverted.toFixed(2).toString())
         break;
       default:
         alert('Você precisa selecionar uma moeda!')

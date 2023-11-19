@@ -7,8 +7,9 @@ function Coin() {
   const [valueDollar, setValueDollar] = useState()
   const [valueBitcoin, setValueBitcoin] = useState()
   const [valueTobeConverted, setValueTobeConverted] = useState('')
-  const [valueConverted, setValueConverted] = useState()
+  let [valueConverted, setValueConverted] = useState(0)
   const [selectedCurrency, setSelectedCurrency] = useState('dollar')
+  let [message, setMessage] = useState('')
 
   useEffect(() => {
     async function loadDollar() {
@@ -20,20 +21,19 @@ function Coin() {
     }
     loadDollar()
   }, [])
-  const handleRadioCurrency = (e) => {
+  function handleRadioCurrency(e) {
     setSelectedCurrency(e.target.id)
-    setValueConverted()
+    setMessage()
   }
 
   function handleChange(e) {
     const valueSanitized = e.target.value
     const valueFormatted = valueSanitized.includes('.', ',') ? parseFloat(valueSanitized).toFixed(2) : valueSanitized
     setValueTobeConverted(valueFormatted)
-    setValueConverted()
+    setMessage()
   }
 
   function handleClick() {
-    let valueConverted = 0
     switch (selectedCurrency) {
       case 'bitcoin':
         valueConverted = (valueTobeConverted / valueBitcoin);
@@ -53,6 +53,23 @@ function Coin() {
     }
     setValueConverted(localStorage.getItem('@coin'))
     setValueTobeConverted(localStorage.getItem('@to-be-converted'))
+    if (valueConverted <= 0) {
+      setMessage('O número precisa ser maior que zero!')
+    } else if (valueConverted !== undefined) {
+      if (valueTobeConverted == 1) {
+        if (selectedCurrency === 'dollar') {
+          setMessage(`${valueTobeConverted} Real(R$) é ($) ${valueConverted.toFixed(2)} de ${selectedCurrency}.`)
+        } else if (selectedCurrency === 'bitcoin') {
+          setMessage(`${valueTobeConverted} Real(R$) é ($) ${valueConverted.toFixed(8)} de ${selectedCurrency}.`)
+        }
+      } else if (valueTobeConverted > 1) {
+        if (selectedCurrency === 'dollar') {
+          setMessage(`${valueTobeConverted} Reais(R$) são ($) ${valueConverted.toFixed(2)} de ${selectedCurrency}.`)
+        } else if (selectedCurrency === 'bitcoin') {
+          setMessage(`${valueTobeConverted} Reais(R$) são ($) ${valueConverted.toFixed(8)} de ${selectedCurrency}.`)
+        }
+      }
+    }
   }
 
   return (
@@ -99,17 +116,7 @@ function Coin() {
           </button>
         </div>
         <div className='res-coin'>
-          <p>
-            {
-              (valueConverted <= 0) ?
-                'O número precisa ser maior que zero!' :
-                (valueConverted == undefined) ? '' :
-                  (valueTobeConverted == 1) ?
-                    (`${valueTobeConverted} Real(R$) é ($) ${valueConverted} em ${selectedCurrency}.`)
-                    :
-                    (`${valueTobeConverted} Reais(R$) sao ($) ${valueConverted} em ${selectedCurrency}.`)
-            }
-          </p>
+          <p>{message}</p>
         </div>
       </div>
     </div>

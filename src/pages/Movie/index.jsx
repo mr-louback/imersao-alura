@@ -18,14 +18,10 @@ function Movie() {
       })
         .then((response) => {
           setMovies(response.data);
-          console.log(response.data);
         })
         
     }
     loadFilm();
-    return (() => {
-      console.log('desmontado');
-    })
   }, [id, navigate])
   // Area de validações
   return (

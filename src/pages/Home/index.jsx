@@ -88,8 +88,7 @@ function Coin() {
               id="bitcoin"
               checked={selectedCurrency === 'bitcoin'}
               onChange={handleRadioCurrency}
-              defaultChecked
-            />
+              />
           </label>
           <label htmlFor="dollar">
             <input
@@ -98,6 +97,7 @@ function Coin() {
               id="dollar"
               checked={selectedCurrency === 'dollar'}
               onChange={handleRadioCurrency}
+              defaultChecked
             />
             Real para Dollar
           </label>

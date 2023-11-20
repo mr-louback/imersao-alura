@@ -1,46 +1,48 @@
-import { useState } from 'react'
+import {  useState } from 'react'
 import './style.css'
 
 
 function Temperature() {
-  const [value, setValue] = useState()
   const [valueTobeConverted, setValueTobeConverted] = useState()
   const [selectedCurrency, setSelectedCurrency] = useState('celsius')
-
-
-  const handleRadioCurrency = (e) => {
+  const [message, setMessage] = useState()
+  function handleRadioCurrency(e) {
     setSelectedCurrency(e.target.id)
     setValueTobeConverted()
+    setMessage()
   }
   function handleChange(e) {
-    const valueSanitized = e.target.value.replace(/[^0-9.]/g, '')
-    const valueFormatted = valueSanitized.includes('.', ',') ? parseFloat(valueSanitized).toFixed(1) : valueSanitized
-    setValueTobeConverted(valueFormatted)
-    setValue()
+    const valueSanitized = e.target.value
+    setValueTobeConverted(valueSanitized)
+    setMessage()
 
   }
   function handleClick() {
-    switch (selectedCurrency) {
-      case 'fahrenheit':
-        const fahrenheit = (valueTobeConverted * 9 / 5) + 32
-        setValue(fahrenheit)
-        localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
-        localStorage.setItem('@current-name', selectedCurrency)
-        localStorage.setItem('@content', fahrenheit.toString())
-        break;
-      case 'celsius':
-        const celsius = (valueTobeConverted - 32) * 5 / 9
-        setValue(celsius)
-        localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
-        localStorage.setItem('@current-name', selectedCurrency)
-        localStorage.setItem('@content', celsius.toString())
-        break;
-      default:
-        alert('Você precisa selecionar uma moeda!')
-        break;
+    if (valueTobeConverted <= 0) {
+      setMessage('O número precisar ser maior que zero!')
+    } else if (valueTobeConverted !== undefined) {
+      switch (selectedCurrency) {
+        case 'celsius':
+          const fahrenheit = (valueTobeConverted * 9 / 5) + 32
+          localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
+          localStorage.setItem('@current-name', selectedCurrency)
+          localStorage.setItem('@content', fahrenheit.toString())
+          setMessage(`${valueTobeConverted}º ${selectedCurrency} é o mesmo que ${localStorage.getItem('@content')}º fahrenheit.`)
+          setValueTobeConverted(localStorage.getItem('@to-be-converted'))
+          break;
+        case 'fahrenheit':
+          const celsius = (valueTobeConverted - 32) * 5 / 9
+          localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
+          localStorage.setItem('@current-name', selectedCurrency)
+          localStorage.setItem('@content', celsius.toString())
+          setMessage(`${valueTobeConverted}º ${selectedCurrency} é o mesmo que ${localStorage.getItem('@content')}º celsius.`)
+          setValueTobeConverted(localStorage.getItem('@to-be-converted'))
+          break;
+        default:
+          alert('Você precisa selecionar uma moeda!')
+          break;
+      }
     }
-    setValue(Number(localStorage.getItem('@content')).toFixed(1).toString())
-    setValueTobeConverted(localStorage.getItem('@to-be-converted'))
   }
   return (
     <div className='content-temperature'>
@@ -48,14 +50,13 @@ function Temperature() {
         <h2>Conversor Temperatura</h2>
         <div className='input-temperature'>
           <label htmlFor="fahrenheit">
-           
+
             <input
               type="radio"
               name="fahrenheit"
               id="fahrenheit"
               checked={selectedCurrency === 'fahrenheit'}
               onChange={handleRadioCurrency}
-              defaultChecked
             /> Fahrenheit
           </label>
           <label htmlFor="celsius">
@@ -85,18 +86,7 @@ function Temperature() {
           </div>
         </div>
         <div className='res-temperature'>
-          <p>
-            {
-              (value == undefined || valueTobeConverted == undefined) ?
-                '' :
-                (valueTobeConverted <= 0) ?
-                  'O número precisar ser maior que zero!' :
-                  (selectedCurrency == 'celsius') ?
-                    (`${valueTobeConverted}º ${selectedCurrency} é o mesmo que ${value}º fahrenheit.`) :
-                    (selectedCurrency == 'fahrenheit') &&
-                    (`${valueTobeConverted}º ${selectedCurrency} é o mesmo que ${value}º celsius.`)
-            }
-          </p>
+          <p>{message}</p>
         </div>
       </div>
     </div>

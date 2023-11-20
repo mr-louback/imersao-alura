@@ -27,7 +27,7 @@ function Temperature() {
           localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
           localStorage.setItem('@current-name', selectedCurrency)
           localStorage.setItem('@content', fahrenheit.toString())
-          setMessage(`${valueTobeConverted}º ${selectedCurrency} é o mesmo que ${localStorage.getItem('@content')}º fahrenheit.`)
+          setMessage(`${valueTobeConverted}º ${selectedCurrency} é o mesmo que ${Number(localStorage.getItem('@content')).toFixed(1).toString()}º fahrenheit.`)
           setValueTobeConverted(localStorage.getItem('@to-be-converted'))
           break;
         case 'fahrenheit':
@@ -35,7 +35,7 @@ function Temperature() {
           localStorage.setItem('@to-be-converted', valueTobeConverted.toString())
           localStorage.setItem('@current-name', selectedCurrency)
           localStorage.setItem('@content', celsius.toString())
-          setMessage(`${valueTobeConverted}º ${selectedCurrency} é o mesmo que ${localStorage.getItem('@content')}º celsius.`)
+          setMessage(`${valueTobeConverted}º ${selectedCurrency} é o mesmo que ${Number(localStorage.getItem('@content')).toFixed(1).toString()}º celsius.`)
           setValueTobeConverted(localStorage.getItem('@to-be-converted'))
           break;
         default:
